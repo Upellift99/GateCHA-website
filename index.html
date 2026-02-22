@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GateCHA - Self-Hosted ALTCHA CAPTCHA Management Server</title>
+  <meta name="description" content="Open-source, self-hosted ALTCHA CAPTCHA server with API keys, multi-site support, replay protection, and statistics dashboard. Free alternative to ALTCHA Sentinel.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GateCHA - Self-Hosted CAPTCHA Management Server">
+  <meta property="og:description" content="Open-source ALTCHA-compatible CAPTCHA server. No cloud, no tracking, your server.">
+  <meta property="og:url" content="https://gatecha.org">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GateCHA - Self-Hosted CAPTCHA Management Server">
+  <meta name="twitter:description" content="Open-source ALTCHA-compatible CAPTCHA server. No cloud, no tracking, your server.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://gatecha.org">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="container nav">
+      <a href="#" class="logo" aria-label="GateCHA Home">
+        <span class="logo-gate">Gate</span><span class="logo-cha">CHA</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#wordpress">WordPress</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/Upellift99/GateCHA" class="nav-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="#install" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container hero-content">
+        <h1 class="hero-title">Self-Hosted CAPTCHA<br>Management Server</h1>
+        <p class="hero-description">Open-source ALTCHA-compatible server with API keys, multi-site support, replay protection, and a statistics dashboard. No cloud. No tracking. Your server.</p>
+        <div class="hero-actions">
+          <a href="https://github.com/Upellift99/GateCHA" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            View on GitHub
+          </a>
+          <a href="#install" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="hero-badges">
+          <span>MIT License</span>
+          <span class="badge-separator" aria-hidden="true"></span>
+          <span>~3 MB Binary</span>
+          <span class="badge-separator" aria-hidden="true"></span>
+          <span>~15 MB Docker Image</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">Features</h2>
+        <p class="section-subtitle">Everything you need to manage CAPTCHA challenges on your own infrastructure</p>
+        <div class="features-grid">
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>ALTCHA Compatible</h3>
+            <p>Works with the official ALTCHA widget. Same protocol, same integration, drop-in replacement for ALTCHA Sentinel.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+              </svg>
+            </div>
+            <h3>API Key Management</h3>
+            <p>Create per-site API keys with custom difficulty, TTL settings, and domain restrictions for granular control.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </div>
+            <h3>Replay Protection</h3>
+            <p>Consumed challenges are tracked and rejected on reuse. Prevents replay attacks automatically.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <h3>Statistics Dashboard</h3>
+            <p>Track challenges issued, verifications, and failures per key and per day with built-in Chart.js visualizations.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3>Single Binary</h3>
+            <p>Vue.js dashboard embedded in a ~3 MB Go binary via go:embed. One file to deploy, nothing else to manage.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 12H2"/>
+                <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+                <line x1="6" y1="16" x2="6.01" y2="16"/>
+                <line x1="10" y1="16" x2="10.01" y2="16"/>
+              </svg>
+            </div>
+            <h3>Docker Ready</h3>
+            <p>~15 MB image, SQLite embedded, zero external dependencies. One container is all you need.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Security First</h3>
+            <p>Secret rotation, CORS configuration, non-root container, and automatic cleanup of expired challenges.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3>Zero Dependencies</h3>
+            <p>SQLite embedded database. No PostgreSQL, no Redis, no external services. Fully self-contained.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three steps to protect your forms</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Configure</h3>
+            <p>Create an API key in the GateCHA dashboard with your desired difficulty, TTL, and domain restrictions.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">
+            <svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="0" y1="12" x2="32" y2="12" stroke-dasharray="4 4"/>
+              <polyline points="28,6 34,12 28,18"/>
+            </svg>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Add Widget</h3>
+            <p>Drop the ALTCHA widget into your HTML form with your GateCHA challenge URL and API key.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">
+            <svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="0" y1="12" x2="32" y2="12" stroke-dasharray="4 4"/>
+              <polyline points="28,6 34,12 28,18"/>
+            </svg>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Verify</h3>
+            <p>GateCHA verifies the proof-of-work solution server-side, rejects replays, and logs statistics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="install" id="install">
+      <div class="container">
+        <h2 class="section-title">Installation</h2>
+        <p class="section-subtitle">Get up and running in minutes</p>
+
+        <div class="tabs">
+          <div class="tab-list" role="tablist" aria-label="Installation methods">
+            <button role="tab" aria-selected="true" aria-controls="panel-compose" id="tab-compose">Docker Compose</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-run" id="tab-run">Docker Run</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-source" id="tab-source">From Source</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-compose" aria-labelledby="tab-compose">
+            <div class="code-block">
+              <button class="copy-btn" aria-label="Copy code">Copy</button>
+              <pre><code># docker-compose.yml
+services:
+  gatecha:
+    image: ghcr.io/upellift99/gatecha:latest
+    container_name: gatecha
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - gatecha_data:/app/data
+    environment:
+      - GATECHA_ADMIN_PASSWORD=changeme
+
+volumes:
+  gatecha_data:</code></pre>
+            </div>
+            <p class="install-note">Then run <code>docker compose up -d</code> and open <code>http://localhost:8080</code>. Log in with <code>admin</code> / <code>changeme</code>.</p>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-run" aria-labelledby="tab-run" hidden>
+            <div class="code-block">
+              <button class="copy-btn" aria-label="Copy code">Copy</button>
+              <pre><code>docker run -d -p 8080:8080 \
+  -v gatecha_data:/app/data \
+  -e GATECHA_ADMIN_PASSWORD=your-password \
+  ghcr.io/upellift99/gatecha:latest</code></pre>
+            </div>
+            <p class="install-note">Open <code>http://localhost:8080</code> and log in with <code>admin</code> and your chosen password.</p>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-source" aria-labelledby="tab-source" hidden>
+            <div class="code-block">
+              <button class="copy-btn" aria-label="Copy code">Copy</button>
+              <pre><code># Requires Go 1.26+ and Node.js 20+
+git clone https://github.com/Upellift99/GateCHA.git
+cd GateCHA
+make build
+./gatecha</code></pre>
+            </div>
+            <p class="install-note">The dashboard is available at <code>http://localhost:8080</code>. Default credentials: <code>admin</code> / <code>changeme</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WordPress Plugin -->
+    <section class="wordpress" id="wordpress">
+      <div class="container">
+        <h2 class="section-title">WordPress Plugin</h2>
+        <p class="section-subtitle">Official integration for WordPress sites</p>
+        <div class="wp-grid">
+          <div class="wp-content">
+            <p class="wp-description">Protect your WordPress forms with GateCHA's official plugin. Privacy-first CAPTCHA powered by proof-of-work &mdash; no cookies, no fingerprinting, no third-party services.</p>
+            <ul class="wp-features">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Privacy-first: no cookies, no fingerprinting, GDPR-compliant
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Invisible proof-of-work &mdash; no image puzzles for users
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Bundled ALTCHA widget &mdash; no external CDN dependency
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Fail-open / fail-closed modes for resilience
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <code>[gatecha]</code> shortcode for any custom form
+              </li>
+            </ul>
+            <a href="https://github.com/Upellift99/GateCHA-WordPress" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              View Plugin on GitHub
+            </a>
+          </div>
+          <div class="wp-forms-card">
+            <h3>14 Protected Form Types</h3>
+            <div class="wp-forms-group">
+              <h4>WordPress Core</h4>
+              <ul>
+                <li>Login</li>
+                <li>Registration</li>
+                <li>Password Reset</li>
+                <li>Comments</li>
+              </ul>
+            </div>
+            <div class="wp-forms-group">
+              <h4>WooCommerce</h4>
+              <ul>
+                <li>Login</li>
+                <li>Registration</li>
+                <li>Password Reset</li>
+              </ul>
+            </div>
+            <div class="wp-forms-group">
+              <h4>Form Plugins</h4>
+              <ul>
+                <li>Contact Form 7</li>
+                <li>WPForms</li>
+                <li>Gravity Forms</li>
+                <li>Elementor Pro</li>
+                <li>Forminator</li>
+                <li>Formidable Forms</li>
+                <li>HTML Forms</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison" id="comparison">
+      <div class="container">
+        <h2 class="section-title">GateCHA vs ALTCHA Sentinel</h2>
+        <p class="section-subtitle">Same protocol, different philosophy</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th class="col-gatecha">GateCHA</th>
+                <th>ALTCHA Sentinel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hosting</td>
+                <td><strong>Self-hosted</strong></td>
+                <td>Cloud SaaS</td>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td><strong>Free (MIT)</strong></td>
+                <td>Paid plans</td>
+              </tr>
+              <tr>
+                <td>Data Ownership</td>
+                <td><strong>Full</strong></td>
+                <td>Third-party</td>
+              </tr>
+              <tr>
+                <td>ALTCHA Protocol</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>Widget Compatible</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>Dashboard</td>
+                <td><strong>Built-in</strong></td>
+                <td>Managed</td>
+              </tr>
+              <tr>
+                <td>Dependencies</td>
+                <td><strong>Zero</strong></td>
+                <td>Cloud infra</td>
+              </tr>
+              <tr>
+                <td>Open Source</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-cross" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="No"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>WordPress Plugin</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>Multi-site Keys</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>Replay Protection</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+              <tr>
+                <td>Statistics</td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+                <td>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="comparison-note">GateCHA is not affiliated with ALTCHA. GateCHA implements the same open ALTCHA proof-of-work protocol.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              What is GateCHA?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>GateCHA is a self-hosted server that implements the ALTCHA proof-of-work CAPTCHA protocol. It provides API key management, multi-site support, replay protection, and a statistics dashboard. Think of it as an open-source alternative to ALTCHA Sentinel that you host on your own infrastructure.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              How does it differ from ALTCHA Sentinel?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>ALTCHA Sentinel is a paid cloud SaaS. GateCHA is free, open-source (MIT), and fully self-hosted. You get complete data ownership while using the same ALTCHA protocol and widget.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Does it work with the official ALTCHA widget?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. GateCHA implements the same challenge/verify API that the ALTCHA widget expects. You can use the official ALTCHA widget (MIT licensed) from npm or CDN without any modification.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              What are the system requirements?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Docker (any platform) or Go 1.26+ and Node.js 20+ to build from source. GateCHA uses SQLite internally, so there are no database servers to set up. The Docker image is approximately 15 MB.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Is there a WordPress plugin?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. The official GateCHA WordPress plugin protects 14 form types including WordPress core forms, WooCommerce forms, and popular form builder plugins like Contact Form 7, WPForms, Gravity Forms, and more. It requires PHP 7.4+ and WordPress 6.0+.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              How is user privacy protected?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>GateCHA uses proof-of-work challenges instead of image puzzles. There are no cookies, no fingerprinting, no tracking, and no data sent to third parties. All data stays on your server. The approach is fully GDPR-compliant.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Can I use it with multiple websites?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. You create separate API keys for each site with individual difficulty, TTL, and domain restriction settings. Statistics are tracked per key, giving you visibility into each site's CAPTCHA activity from a single dashboard.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo" aria-label="GateCHA Home">
+            <span class="logo-gate">Gate</span><span class="logo-cha">CHA</span>
+          </a>
+          <p>Self-hosted ALTCHA CAPTCHA management server. Open source, privacy-first, fully self-contained.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="https://github.com/Upellift99/GateCHA" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/Upellift99/GateCHA-WordPress" target="_blank" rel="noopener noreferrer">WordPress Plugin</a></li>
+            <li><a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA Project</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="https://github.com/Upellift99/GateCHA/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+          </ul>
+          <p class="footer-privacy">No tracking. No analytics. This site collects zero data.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 GateCHA contributors. Open source forever.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
