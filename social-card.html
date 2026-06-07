@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  Social share card — 1200x630.
+  Rendered to assets/social-card.png (referenced by og:image / twitter:image).
+  To regenerate after editing:
+    docker run --rm -v "$PWD":/work -w /work zenika/alpine-chrome \
+      --no-sandbox --headless --hide-scrollbars \
+      --screenshot=assets/social-card.png --window-size=1200,630 \
+      file:///work/social-card.html
+-->
+<style>
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('assets/fonts/inter-latin.woff2') format('woff2');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0F172A;
+    background-image:
+      radial-gradient(circle at 88% 12%, rgba(13, 148, 136, 0.45), transparent 45%),
+      radial-gradient(circle at 6% 95%, rgba(13, 148, 136, 0.18), transparent 40%);
+    color: #fff;
+    padding: 80px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-font-smoothing: antialiased;
+  }
+  .top { display: flex; align-items: center; gap: 20px; }
+  .shield {
+    width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(13, 148, 136, 0.15);
+    border: 1px solid rgba(45, 212, 191, 0.35);
+    border-radius: 18px;
+  }
+  .logo { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .logo .cha { color: #2DD4BF; }
+  h1 {
+    font-size: 76px; font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.03em; max-width: 18ch;
+  }
+  h1 .accent { color: #2DD4BF; }
+  p { font-size: 30px; color: #94A3B8; line-height: 1.4; max-width: 30ch; margin-top: 22px; }
+  .badges { display: flex; gap: 16px; }
+  .pill {
+    font-size: 24px; font-weight: 600; color: #CBD5E1;
+    white-space: nowrap;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+  }
+  .pill.primary { color: #0F172A; background: #2DD4BF; border-color: #2DD4BF; }
+  .url { margin-left: auto; align-self: flex-end; font-size: 26px; font-weight: 600; color: #2DD4BF; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="shield">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+    <span class="logo">Gate<span class="cha">CHA</span></span>
+  </div>
+
+  <div>
+    <h1>Self-Hosted <span class="accent">CAPTCHA</span> Management Server</h1>
+    <p>Open-source ALTCHA alternative. No cloud. No tracking. Your server.</p>
+  </div>
+
+  <div class="badges">
+    <span class="pill primary">MIT Licensed</span>
+    <span class="pill">Self-Hosted</span>
+    <span class="pill">Zero Tracking</span>
+    <span class="pill">~15 MB Docker</span>
+    <span class="url">gatecha.org</span>
+  </div>
+</body>
+</html>

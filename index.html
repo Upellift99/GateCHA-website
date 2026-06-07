@@ -11,11 +11,16 @@
   <meta property="og:description" content="Open-source ALTCHA-compatible CAPTCHA server. No cloud, no tracking, your server.">
   <meta property="og:url" content="https://gatecha.org">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gatecha.org/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GateCHA — self-hosted ALTCHA CAPTCHA management server">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GateCHA - Self-Hosted CAPTCHA Management Server">
   <meta name="twitter:description" content="Open-source ALTCHA-compatible CAPTCHA server. No cloud, no tracking, your server.">
+  <meta name="twitter:image" content="https://gatecha.org/assets/social-card.png">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -23,10 +28,8 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://gatecha.org">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts (self-hosted, see css/style.css @font-face) -->
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -85,6 +88,23 @@
           <span class="badge-separator" aria-hidden="true"></span>
           <span>~15 MB Docker Image</span>
         </div>
+      </div>
+
+      <!-- Dashboard preview -->
+      <div class="container hero-preview-wrap">
+        <figure class="browser-frame">
+          <div class="browser-bar" aria-hidden="true">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-url">gatecha.example.com</span>
+          </div>
+          <img src="assets/dashboard.png" width="1200" height="750"
+               alt="GateCHA dashboard showing API keys and per-day challenge statistics"
+               loading="lazy" decoding="async"
+               onerror="this.closest('.hero-preview-wrap').remove()">
+          <figcaption class="visually-hidden">The GateCHA statistics dashboard</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -276,7 +296,7 @@ volumes:
           <div class="tab-panel" role="tabpanel" id="panel-source" aria-labelledby="tab-source" hidden>
             <div class="code-block">
               <button class="copy-btn" aria-label="Copy code">Copy</button>
-              <pre><code># Requires Go 1.26+ and Node.js 20+
+              <pre><code># Requires Go 1.25+ and Node.js 20+
 git clone https://github.com/Upellift99/GateCHA.git
 cd GateCHA
 make build
@@ -513,7 +533,7 @@ make build
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </summary>
             <div class="faq-answer">
-              <p>Docker (any platform) or Go 1.26+ and Node.js 20+ to build from source. GateCHA uses SQLite internally, so there are no database servers to set up. The Docker image is approximately 15 MB.</p>
+              <p>Docker (any platform) or Go 1.25+ and Node.js 20+ to build from source. GateCHA uses SQLite internally, so there are no database servers to set up. The Docker image is approximately 15 MB.</p>
             </div>
           </details>
 
