@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — GateCHA</title>
+  <meta name="description" content="GateCHA documentation: installation, configuration, widget integration, API reference, security levers, and the privacy model of the self-hosted ALTCHA CAPTCHA server.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GateCHA Documentation">
+  <meta property="og:description" content="Install, configure, integrate and secure your self-hosted ALTCHA CAPTCHA server.">
+  <meta property="og:url" content="https://gatecha.org/docs/">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://gatecha.org/assets/social-card.png">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://gatecha.org/docs/">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/docs.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="container nav">
+      <a href="/" class="logo" aria-label="GateCHA Home">
+        <span class="logo-gate">Gate</span><span class="logo-cha">CHA</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#install">Install</a>
+        <a href="/#wordpress">WordPress</a>
+        <a href="/docs/" class="active">Docs</a>
+        <a href="https://github.com/Upellift99/GateCHA" class="nav-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/Upellift99/GateCHA" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container">
+    <div class="docs-hero">
+      <h1>Documentation</h1>
+      <p>Everything you need to install, configure, integrate and secure your self-hosted GateCHA server — the open-source ALTCHA CAPTCHA management layer.</p>
+    </div>
+
+    <div class="docs-layout">
+      <!-- Sidebar -->
+      <aside class="docs-toc">
+        <h2>On this page</h2>
+        <nav>
+          <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#integration">Widget integration</a></li>
+            <li><a href="#api">API reference</a></li>
+            <li><a href="#security">Security levers</a></li>
+            <li><a href="#privacy">Privacy &amp; data</a></li>
+            <li><a href="#resources">Resources</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div class="docs-content">
+
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>GateCHA is a self-hosted, open-source (MIT) alternative to ALTCHA Sentinel. It wraps the <a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA</a> proof-of-work CAPTCHA protocol with API-key management, multi-site support, replay protection, adaptive difficulty, per-key rate limiting, a privacy-first statistics dashboard, and a DIY Human Interaction Signature — all in a single Docker container.</p>
+          <ul class="bullets">
+            <li><strong>ALTCHA-compatible</strong> — works with the official ALTCHA widget; no proprietary client.</li>
+            <li><strong>Self-contained</strong> — one container, embedded SQLite (or MySQL), no external services.</li>
+            <li><strong>Privacy-first</strong> — no client IP is ever stored or logged; only aggregated, anonymous counters.</li>
+          </ul>
+        </section>
+
+        <section id="installation">
+          <h2>Installation</h2>
+
+          <h3>Docker Compose (recommended)</h3>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code>mkdir -p /opt/docker/GateCHA &amp;&amp; cd /opt/docker/GateCHA
+wget https://raw.githubusercontent.com/Upellift99/GateCHA/refs/heads/main/docker-compose.yml
+docker compose up -d</code></pre>
+          </div>
+          <p>Open <code>http://localhost:8080</code> and log in. If you did not set <code>GATECHA_ADMIN_PASSWORD</code>, a random one is printed to the container logs on first boot.</p>
+
+          <h3>Docker Run</h3>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code>docker run -d -p 8080:8080 \
+  -v gatecha_data:/app/data \
+  -e GATECHA_ADMIN_PASSWORD=your-password \
+  ghcr.io/upellift99/gatecha:latest</code></pre>
+          </div>
+
+          <h3>From source</h3>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># Prerequisites: Go 1.26+, Node.js 20+
+git clone https://github.com/Upellift99/GateCHA.git
+cd GateCHA
+make build        # SQLite only (default)
+./gatecha</code></pre>
+          </div>
+        </section>
+
+        <section id="configuration">
+          <h2>Configuration</h2>
+          <p>GateCHA is configured entirely through environment variables. All values are optional; sensible defaults apply.</p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>GATECHA_LISTEN_ADDR</code></td><td><code>:8080</code></td><td>Listen address.</td></tr>
+                <tr><td><code>GATECHA_DB_DRIVER</code></td><td><code>sqlite</code></td><td><code>sqlite</code> (always available) or <code>mysql</code> (mysql build variant).</td></tr>
+                <tr><td><code>GATECHA_DB_DSN</code></td><td><code>./data/gatecha.db</code></td><td>SQLite file path, or MySQL connection string.</td></tr>
+                <tr><td><code>GATECHA_SECRET_KEY</code></td><td><em>auto</em></td><td>JWT signing secret. Set it to keep sessions valid across restarts.</td></tr>
+                <tr><td><code>GATECHA_ADMIN_USERNAME</code></td><td><code>admin</code></td><td>Admin username.</td></tr>
+                <tr><td><code>GATECHA_ADMIN_PASSWORD</code></td><td><em>auto</em></td><td>Admin password (printed once to stderr if generated).</td></tr>
+                <tr><td><code>GATECHA_LOG_LEVEL</code></td><td><code>info</code></td><td><code>debug</code> / <code>info</code> / <code>warn</code> / <code>error</code>.</td></tr>
+                <tr><td><code>GATECHA_CLEANUP_INTERVAL</code></td><td><code>10</code></td><td>Expired-challenge cleanup interval, in minutes.</td></tr>
+                <tr><td><code>GATECHA_HIS_SAMPLE_RETENTION_DAYS</code></td><td><code>30</code></td><td>Retention for opted-in raw HIS calibration samples.</td></tr>
+                <tr><td><code>GATECHA_CORS_ALLOW_ALL</code></td><td><code>false</code></td><td>Allow CORS from any origin (default: per-key domain check).</td></tr>
+                <tr><td><code>GATECHA_TRUST_PROXY</code></td><td><code>false</code></td><td>Trust <code>X-Forwarded-For</code> / <code>X-Real-IP</code>. <strong>Set to <code>true</code> behind a reverse proxy</strong> (see note).</td></tr>
+                <tr><td><code>GATECHA_ENABLE_HSTS</code></td><td><code>false</code></td><td>Send <code>Strict-Transport-Security</code> (HTTPS-only deployments).</td></tr>
+                <tr><td><code>GATECHA_MAX_BODY_BYTES</code></td><td><code>1048576</code></td><td>Maximum accepted request body size, in bytes.</td></tr>
+                <tr><td><code>GATECHA_RATE_LIMIT_ENABLED</code></td><td><code>true</code></td><td>Enable per-IP rate limiting.</td></tr>
+                <tr><td><code>GATECHA_RATE_LIMIT_LOGIN</code></td><td><code>5</code></td><td>Admin login requests per minute, per IP.</td></tr>
+                <tr><td><code>GATECHA_RATE_LIMIT_API</code></td><td><code>60</code></td><td>Public API requests per minute, per IP.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-note">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a1 1 0 0 0 0 2v3a1 1 0 0 0 1 1h1a1 1 0 1 0 0-2v-3a1 1 0 0 0-1-1H9Z" clip-rule="evenodd"/></svg>
+            <span><strong>Behind a reverse proxy, set <code>GATECHA_TRUST_PROXY=true</code>.</strong> Otherwise per-IP rate limiting keys off the proxy's IP — every visitor shares one bucket, which exhausts immediately and breaks the public challenge endpoint (and the login captcha). Only enable it behind a <strong>trusted</strong> proxy that sets the forwarding headers.</span>
+          </div>
+        </section>
+
+        <section id="integration">
+          <h2>Widget integration</h2>
+          <p>Add the official ALTCHA widget (v3) to your form and point its <code>challenge</code> attribute at your GateCHA challenge endpoint, authenticated with the site's API key.</p>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code>&lt;script async defer src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js" type="module"&gt;&lt;/script&gt;
+
+&lt;form action="/your-endpoint" method="POST"&gt;
+  &lt;!-- your fields --&gt;
+  &lt;altcha-widget
+    challenge="https://your-gatecha-host/api/v1/challenge?apiKey=gk_your_key_id"
+  &gt;&lt;/altcha-widget&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+
+          <h3>Verify on your backend</h3>
+          <p>The widget posts an <code>altcha</code> payload with your form. Forward it to GateCHA's verify endpoint and check <code>ok</code> before trusting the submission. The challenge is single-use — replays are rejected.</p>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># Example: Python
+import requests
+
+altcha_payload = request.form.get('altcha')
+resp = requests.post(
+    'https://your-gatecha-host/api/v1/verify?apiKey=gk_your_key_id',
+    json={'payload': altcha_payload},
+)
+if resp.json().get('ok'):
+    pass  # valid submission</code></pre>
+          </div>
+          <div class="docs-note">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a1 1 0 0 0 0 2v3a1 1 0 0 0 1 1h1a1 1 0 1 0 0-2v-3a1 1 0 0 0-1-1H9Z" clip-rule="evenodd"/></svg>
+            <span>Use the v3 <code>challenge</code> attribute, not the v2 <code>challengeurl</code>. The exact integration snippet for each key is shown on its detail page in the dashboard.</span>
+          </div>
+        </section>
+
+        <section id="api">
+          <h2>API reference</h2>
+
+          <h3>Public API <span class="api-desc">— authenticated with <code>?apiKey=gk_…</code></span></h3>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/v1/challenge</span> <span class="api-desc">Generate a proof-of-work challenge.</span></div>
+          <div class="api-endpoint"><span class="api-method post">POST</span> <span class="api-path">/api/v1/verify</span> <span class="api-desc">Verify a solution — body <code>{ "payload": "…", "his_signals"?: {…} }</code>.</span></div>
+
+          <h3>Admin API <span class="api-desc">— JWT via <code>Authorization: Bearer</code></span></h3>
+          <div class="api-endpoint"><span class="api-method post">POST</span> <span class="api-path">/api/admin/login</span> <span class="api-desc">Authenticate, returns a JWT.</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/version</span> <span class="api-desc">Build version (authenticated).</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/keys</span> <span class="api-desc">List API keys.</span></div>
+          <div class="api-endpoint"><span class="api-method post">POST</span> <span class="api-path">/api/admin/keys</span> <span class="api-desc">Create an API key.</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/keys/{id}</span> <span class="api-desc">Get / <span class="api-method put">PUT</span> update / <span class="api-method delete">DEL</span> delete a key.</span></div>
+          <div class="api-endpoint"><span class="api-method post">POST</span> <span class="api-path">/api/admin/keys/{id}/rotate-secret</span> <span class="api-desc">Rotate the HMAC secret.</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/stats/overview</span> <span class="api-desc">Global stats incl. per-country breakdown.</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/stats/keys/{id}</span> <span class="api-desc">Per-key stats.</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/api/admin/his/calibration</span> <span class="api-desc">HIS score distribution (calibration).</span></div>
+          <div class="api-endpoint"><span class="api-method get">GET</span> <span class="api-path">/healthz</span> <span class="api-desc">Health check (unauthenticated).</span></div>
+        </section>
+
+        <section id="security">
+          <h2>Security levers</h2>
+          <p>Each API key carries its own protection settings, all editable from the dashboard. PoW alone deters casual automation; combine these for layered defense.</p>
+
+          <h3>Per-key difficulty</h3>
+          <p><code>max_number</code> sets the proof-of-work cost (higher = harder = slower for the client). Pick per site based on abuse pressure vs. UX. <code>expire_seconds</code> bounds challenge validity; <code>algorithm</code> selects <code>SHA-256</code> (default) or <code>SHA-512</code>.</p>
+
+          <h3>Per-key rate limiting</h3>
+          <p><code>rate_limit_per_min</code> caps challenge + verify calls for a key across all clients (<code>0</code> = unlimited). This is in addition to the global per-IP limiter (<code>GATECHA_RATE_LIMIT_API</code>).</p>
+
+          <h3>Adaptive difficulty</h3>
+          <p>When enabled, GateCHA raises the PoW cost <em>above</em> the key's base for any source (by IP) requesting challenges at an abusive rate — escalating an attacker without penalizing normal visitors. The configured difficulty stays the floor; it never blocks.</p>
+
+          <h3>Human Interaction Signature (HIS)</h3>
+          <p>An open-source take on the concept behind ALTCHA Sentinel's proprietary HIS. The client collects <strong>privacy-preserving aggregates</strong> of interaction behaviour (counts, pointer distance, durations, timing variance — never coordinates, timestamps or key contents) and the server scores the automation probability.</p>
+          <ul class="bullets">
+            <li><strong>Monitor mode</strong> (default) records and counts bot-suspected samples but <em>never</em> blocks.</li>
+            <li><strong>Sampling</strong> (opt-in per key) stores the raw aggregates so you can calibrate a threshold on real traffic, with a configurable retention window. The dashboard shows the score distribution against the suspect threshold.</li>
+          </ul>
+          <div class="docs-note">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a1 1 0 0 0 0 2v3a1 1 0 0 0 1 1h1a1 1 0 1 0 0-2v-3a1 1 0 0 0-1-1H9Z" clip-rule="evenodd"/></svg>
+            <span>Enable HIS sampling on a busy key for a few days, then read the calibration histogram before considering any enforcement — calibrating on your own traffic avoids false positives.</span>
+          </div>
+        </section>
+
+        <section id="privacy">
+          <h2>Privacy &amp; data</h2>
+          <p>GateCHA is privacy-first by construction. It is designed so you can run a CAPTCHA without becoming a tracking vector.</p>
+          <ul class="bullets">
+            <li><strong>No IP is ever stored or logged.</strong> The client IP is used only in memory for rate limiting and adaptive difficulty.</li>
+            <li><strong>Country-only geolocation.</strong> The traffic-by-country panel resolves the IP to a country code at request time (via an embedded, offline database) and immediately discards the address — only the aggregated country counter is persisted.</li>
+            <li><strong>HIS stores aggregates only</strong> — counts, distances, durations and timing variance; never coordinates, timestamps or what was typed.</li>
+            <li><strong>Self-contained.</strong> No third-party CDN for fonts or scripts in the admin UI; nothing phones home.</li>
+          </ul>
+        </section>
+
+        <section id="resources">
+          <h2>Resources</h2>
+          <ul class="bullets">
+            <li><a href="https://github.com/Upellift99/GateCHA" target="_blank" rel="noopener noreferrer">GateCHA on GitHub</a> — source, issues, releases.</li>
+            <li><a href="https://github.com/Upellift99/GateCHA-WordPress" target="_blank" rel="noopener noreferrer">GateCHA WordPress plugin</a> — drop-in protection for WordPress forms.</li>
+            <li><a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA project</a> — the underlying open CAPTCHA protocol and widget.</li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo" aria-label="GateCHA Home">
+            <span class="logo-gate">Gate</span><span class="logo-cha">CHA</span>
+          </a>
+          <p>Self-hosted ALTCHA CAPTCHA management server. Open source, privacy-first, fully self-contained.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/Upellift99/GateCHA" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/Upellift99/GateCHA-WordPress" target="_blank" rel="noopener noreferrer">WordPress Plugin</a></li>
+            <li><a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA Project</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="https://github.com/Upellift99/GateCHA/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+          </ul>
+          <p class="footer-privacy">No tracking. No analytics. This site collects zero data.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 GateCHA contributors. Open source forever.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+  <!-- TOC scroll-spy (docs-only) -->
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.docs-toc a'));
+      var sections = links
+        .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+        .filter(Boolean);
+      if (!('IntersectionObserver' in window) || sections.length === 0) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove('active'); });
+            if (byId[e.target.id]) byId[e.target.id].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -75% 0px' });
+      sections.forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
+</body>
+</html>
