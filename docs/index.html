@@ -218,6 +218,9 @@ if resp.json().get('ok'):
           <h3>Per-key difficulty</h3>
           <p><code>max_number</code> sets the proof-of-work cost (higher = harder = slower for the client). Pick per site based on abuse pressure vs. UX. <code>expire_seconds</code> bounds challenge validity; <code>algorithm</code> selects <code>SHA-256</code> (default) or <code>SHA-512</code>.</p>
 
+          <h3>Domain restrictions</h3>
+          <p>A key can be locked to one or more origins. List <strong>one domain per line</strong> (commas also work); requests whose <code>Origin</code>/<code>Referer</code> host matches any entry are allowed. Use <code>*.example.com</code> to allow every subdomain <em>and</em> the bare <code>example.com</code>. Leave the field empty to allow any origin.</p>
+
           <h3>Per-key rate limiting</h3>
           <p><code>rate_limit_per_min</code> caps challenge + verify calls for a key across all clients (<code>0</code> = unlimited). This is in addition to the global per-IP limiter (<code>GATECHA_RATE_LIMIT_API</code>).</p>
 
@@ -289,6 +292,7 @@ if resp.json().get('ok'):
         </div>
       </div>
       <div class="footer-bottom">
+        <p class="footer-made">Made with <span class="footer-heart" aria-label="love" role="img">&#10084;&#65039;</span> in Sceaux, France</p>
         <p>&copy; 2026 GateCHA contributors. Open source forever.</p>
       </div>
     </div>

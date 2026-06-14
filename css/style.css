@@ -873,6 +873,14 @@ tbody td strong {
   font-size: 0.85rem;
 }
 
+.footer-made {
+  margin-bottom: 0.35rem;
+}
+
+.footer-heart {
+  color: #ef4444;
+}
+
 /* ===========================
    Responsive
    =========================== */
