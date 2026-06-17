@@ -84,6 +84,32 @@ code {
 }
 
 /* --- Accessibility --- */
+/* --- Announcement Bar --- */
+.announcement-bar {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding: 0.6rem 1rem;
+}
+
+.announcement-bar p {
+  margin: 0 auto;
+  max-width: 64rem;
+}
+
+.announcement-bar a {
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.announcement-bar a:hover {
+  opacity: 0.85;
+}
+
 .skip-link {
   position: absolute;
   top: -100%;
