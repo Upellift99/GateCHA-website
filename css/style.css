@@ -84,6 +84,59 @@ code {
 }
 
 /* --- Accessibility --- */
+/* --- Announcement Bar --- */
+.announcement-bar {
+  position: relative;
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding: 0.6rem 2.75rem;
+}
+
+.announcement-bar p {
+  margin: 0 auto;
+  max-width: 64rem;
+}
+
+.announcement-bar a {
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.announcement-bar a:hover {
+  opacity: 0.85;
+}
+
+.announcement-close {
+  position: absolute;
+  top: 50%;
+  right: 0.6rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-white);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.announcement-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .skip-link {
   position: absolute;
   top: -100%;
