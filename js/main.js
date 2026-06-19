@@ -185,24 +185,4 @@
   style.textContent = '.faq-answer { transition: max-height 0.3s ease, padding-bottom 0.3s ease; }';
   document.head.appendChild(style);
 
-  // --- Announcement Bar Dismissal ---
-  var announcementBar = document.querySelector('.announcement-bar');
-  if (announcementBar) {
-    var DISMISS_KEY = 'gatecha-wp-review-banner-dismissed';
-    var dismissed = false;
-    try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
-
-    if (dismissed) {
-      announcementBar.hidden = true;
-    }
-
-    var closeBtn = announcementBar.querySelector('.announcement-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-        announcementBar.hidden = true;
-        try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
-      });
-    }
-  }
-
 })();
