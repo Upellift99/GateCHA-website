@@ -108,6 +108,18 @@ docker compose up -d</code></pre>
   ghcr.io/upellift99/gatecha:latest</code></pre>
           </div>
 
+          <h3>Prebuilt binary (no Docker)</h3>
+          <p>GateCHA ships as a single self-contained binary &mdash; the dashboard is embedded, so there are no extra files or runtime dependencies. Download the archive for your platform from the <a href="https://github.com/Upellift99/GateCHA/releases/latest">latest release</a> (<code>linux</code>/<code>darwin</code>/<code>windows</code>, <code>amd64</code>/<code>arm64</code>).</p>
+          <div class="code-block">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># Example: Linux x86_64 &mdash; check the releases page for the current version
+VERSION=0.3.1
+curl -fsSL -o gatecha.tar.gz \
+  "https://github.com/Upellift99/GateCHA/releases/download/v${VERSION}/gatecha_${VERSION}_linux_amd64.tar.gz"
+tar -xzf gatecha.tar.gz
+GATECHA_ADMIN_PASSWORD=your-password ./gatecha</code></pre>
+          </div>
+
           <h3>From source</h3>
           <div class="code-block">
             <button class="copy-btn" type="button">Copy</button>
