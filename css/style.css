@@ -29,8 +29,12 @@
   --color-white: #FFFFFF;
   --color-code-bg: #1E293B;
   --color-code-text: #E2E8F0;
-  --color-success: #22C55E;
-  --color-danger: #EF4444;
+  /* Semantic colors hold 3:1 as icons and 4.5:1 under white text */
+  --color-success: #15803D;
+  --color-danger: #DC2626;
+  --color-warning: #B45309;
+  --color-info: #2563EB;
+  --color-primary-border: #99F6E4;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
@@ -877,7 +881,7 @@ tbody td strong {
 }
 
 .footer-heart {
-  color: #ef4444;
+  color: var(--color-danger);
 }
 
 /* ===========================
