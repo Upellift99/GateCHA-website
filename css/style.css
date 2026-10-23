@@ -842,7 +842,7 @@ tbody td strong {
   max-width: 300px;
 }
 
-.footer-links h4 {
+.footer-links h2 {
   color: var(--color-neutral-200);
   font-size: 0.875rem;
   font-weight: 600;
