@@ -79,6 +79,29 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
+/* Links inside running text need more than color to stand out (WCAG 1.4.1) */
+p a,
+dd a,
+td a,
+.bullets a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p, dd, li {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-neutral-900);
+}
+
 ul {
   list-style: none;
 }
@@ -527,6 +550,7 @@ section {
 }
 
 .code-block {
+  --color-primary: var(--color-primary-on-dark); /* focus ring on the dark surface */
   position: relative;
   background: var(--color-code-bg);
   border-radius: 8px;

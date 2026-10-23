@@ -41,7 +41,9 @@
       var target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // An explicit 'smooth' ignores the CSS reduced-motion override, so check it here
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       }
     });
   });
