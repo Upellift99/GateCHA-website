@@ -100,10 +100,17 @@
             <span class="browser-dot"></span>
             <span class="browser-url">gatecha.example.com</span>
           </div>
-          <img src="assets/dashboard.png" width="1440" height="1310"
-               alt="GateCHA dashboard showing challenge totals, the Human Interaction Signature monitor, traffic by country and a 30-day verification chart"
-               loading="lazy" decoding="async"
-               onerror="this.closest('.hero-preview-wrap').remove()">
+          <!-- When dashboard.png changes, regenerate the WebP variants:
+               for w in 1440 960 640; do ffmpeg -y -i assets/dashboard.png -vf "scale=$w:-2:flags=lanczos" -c:v libwebp -quality 88 -compression_level 6 assets/dashboard-$w.webp; done -->
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/dashboard-640.webp 640w, assets/dashboard-960.webp 960w, assets/dashboard-1440.webp 1440w"
+                    sizes="(min-width: 1056px) 990px, calc(100vw - 50px)">
+            <img src="assets/dashboard.png" width="1440" height="1310"
+                 alt="GateCHA dashboard showing challenge totals, the Human Interaction Signature monitor, traffic by country and a 30-day verification chart"
+                 fetchpriority="high" decoding="async"
+                 onerror="this.closest('.hero-preview-wrap').remove()">
+          </picture>
           <figcaption class="visually-hidden">The GateCHA statistics dashboard</figcaption>
         </figure>
       </div>
