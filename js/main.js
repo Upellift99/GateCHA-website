@@ -23,6 +23,14 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // Close menu on Escape and hand focus back to the toggle
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !navLinks.classList.contains('nav-open')) return;
+      navLinks.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    });
   }
 
   // --- Smooth Scrolling ---
@@ -66,11 +74,15 @@
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         // Deactivate all
-        tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+        tabs.forEach(function (t) {
+          t.setAttribute('aria-selected', 'false');
+          t.setAttribute('tabindex', '-1');
+        });
         panels.forEach(function (p) { p.hidden = true; });
 
-        // Activate clicked
+        // Activate clicked (roving tabindex: only the active tab is tabbable)
         this.setAttribute('aria-selected', 'true');
+        this.removeAttribute('tabindex');
         var panel = document.getElementById(this.getAttribute('aria-controls'));
         if (panel) panel.hidden = false;
       });
@@ -89,6 +101,10 @@
         newIndex = (index + 1) % tabArray.length;
       } else if (e.key === 'ArrowLeft') {
         newIndex = (index - 1 + tabArray.length) % tabArray.length;
+      } else if (e.key === 'Home') {
+        newIndex = 0;
+      } else if (e.key === 'End') {
+        newIndex = tabArray.length - 1;
       } else {
         return;
       }
@@ -100,6 +116,18 @@
   }
 
   // --- Copy to Clipboard ---
+  // The buttons' aria-label hides their "Copied!" text from screen readers,
+  // so the outcome is also announced through a shared live region.
+  var copyStatus = document.createElement('div');
+  copyStatus.className = 'visually-hidden';
+  copyStatus.setAttribute('role', 'status');
+  document.body.appendChild(copyStatus);
+
+  function announce(message) {
+    copyStatus.textContent = '';
+    setTimeout(function () { copyStatus.textContent = message; }, 50);
+  }
+
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var codeBlock = this.closest('.code-block');
@@ -109,8 +137,14 @@
       var text = code.textContent;
       var button = this;
 
-      navigator.clipboard.writeText(text).then(function () {
+      // navigator.clipboard is undefined outside secure contexts
+      var write = navigator.clipboard
+        ? navigator.clipboard.writeText(text)
+        : Promise.reject(new Error('Clipboard API unavailable'));
+
+      write.then(function () {
         button.textContent = 'Copied!';
+        announce('Code copied to clipboard');
         setTimeout(function () { button.textContent = 'Copy'; }, 2000);
       }).catch(function () {
         // Fallback for older browsers
@@ -121,11 +155,13 @@
         document.body.appendChild(textarea);
         textarea.select();
         try {
-          document.execCommand('copy');
+          if (!document.execCommand('copy')) throw new Error('execCommand copy refused');
           button.textContent = 'Copied!';
+          announce('Code copied to clipboard');
           setTimeout(function () { button.textContent = 'Copy'; }, 2000);
         } catch (err) {
           button.textContent = 'Error';
+          announce('Copy failed. Select the code and copy it manually.');
           setTimeout(function () { button.textContent = 'Copy'; }, 2000);
         }
         document.body.removeChild(textarea);
