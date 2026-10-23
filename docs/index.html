@@ -147,6 +147,7 @@ make build        # SQLite only (default)
                 <tr><td><code>GATECHA_ADMIN_USERNAME</code></td><td><code>admin</code></td><td>Admin username.</td></tr>
                 <tr><td><code>GATECHA_ADMIN_PASSWORD</code></td><td><em>auto</em></td><td>Admin password (printed once to stderr if generated).</td></tr>
                 <tr><td><code>GATECHA_LOG_LEVEL</code></td><td><code>info</code></td><td><code>debug</code> / <code>info</code> / <code>warn</code> / <code>error</code>.</td></tr>
+                <tr><td><code>GATECHA_LOG_CLIENT_IP</code></td><td><code>false</code></td><td>Add the client IP to request logs, for debugging only. Off by default, so no IP is logged.</td></tr>
                 <tr><td><code>GATECHA_CLEANUP_INTERVAL</code></td><td><code>10</code></td><td>Expired-challenge cleanup interval, in minutes.</td></tr>
                 <tr><td><code>GATECHA_HIS_SAMPLE_RETENTION_DAYS</code></td><td><code>30</code></td><td>Retention for opted-in raw HIS calibration samples.</td></tr>
                 <tr><td><code>GATECHA_CORS_ALLOW_ALL</code></td><td><code>false</code></td><td>Allow CORS from any origin (default: per-key domain check).</td></tr>
@@ -255,7 +256,7 @@ if resp.json().get('ok'):
           <h2>Privacy &amp; data</h2>
           <p>GateCHA is privacy-first by construction. It is designed so you can run a CAPTCHA without becoming a tracking vector.</p>
           <ul class="bullets">
-            <li><strong>No IP is ever stored or logged.</strong> The client IP is used only in memory for rate limiting and adaptive difficulty.</li>
+            <li><strong>No IP is ever stored or logged.</strong> The client IP is used only in memory for rate limiting, adaptive difficulty and the country lookup below. Request logs leave it out (since v0.9.4) unless you set <code>GATECHA_LOG_CLIENT_IP=true</code> to debug.</li>
             <li><strong>Country-only geolocation.</strong> The traffic-by-country panel resolves the IP to a country code at request time (via an embedded, offline database) and immediately discards the address — only the aggregated country counter is persisted.</li>
             <li><strong>HIS stores aggregates only</strong> — counts, distances, durations and timing variance; never coordinates, timestamps or what was typed.</li>
             <li><strong>Self-contained.</strong> No third-party CDN for fonts or scripts in the admin UI; nothing phones home.</li>
