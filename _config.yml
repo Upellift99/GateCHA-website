@@ -1,0 +1,4 @@
+# GitHub Pages (legacy Jekyll build). The site is plain static HTML; this file
+# only keeps repository notes off gatecha.org.
+exclude:
+  - PRODUCT.md

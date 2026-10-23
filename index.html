@@ -85,9 +85,9 @@
         <div class="hero-badges">
           <span>MIT License</span>
           <span class="badge-separator" aria-hidden="true"></span>
-          <span>~3 MB Binary</span>
+          <span>~14.2 MB Binary</span>
           <span class="badge-separator" aria-hidden="true"></span>
-          <span>~15 MB Docker Image</span>
+          <span>~23.8 MB Docker Image</span>
         </div>
       </div>
 
@@ -100,10 +100,17 @@
             <span class="browser-dot"></span>
             <span class="browser-url">gatecha.example.com</span>
           </div>
-          <img src="assets/dashboard.png" width="1440" height="1310"
-               alt="GateCHA dashboard showing challenge totals, the Human Interaction Signature monitor, traffic by country and a 30-day verification chart"
-               loading="lazy" decoding="async"
-               onerror="this.closest('.hero-preview-wrap').remove()">
+          <!-- When dashboard.png changes, regenerate the WebP variants:
+               for w in 1440 960 640; do ffmpeg -y -i assets/dashboard.png -vf "scale=$w:-2:flags=lanczos" -c:v libwebp -quality 88 -compression_level 6 assets/dashboard-$w.webp; done -->
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/dashboard-640.webp 640w, assets/dashboard-960.webp 960w, assets/dashboard-1440.webp 1440w"
+                    sizes="(min-width: 1056px) 990px, calc(100vw - 50px)">
+            <img src="assets/dashboard.png" width="1440" height="1310"
+                 alt="GateCHA dashboard showing challenge totals, the Human Interaction Signature monitor, traffic by country and a 30-day verification chart"
+                 fetchpriority="high" decoding="async"
+                 onerror="this.closest('.hero-preview-wrap').remove()">
+          </picture>
           <figcaption class="visually-hidden">The GateCHA statistics dashboard</figcaption>
         </figure>
       </div>
@@ -114,97 +121,68 @@
       <div class="container">
         <h2 class="section-title">Features</h2>
         <p class="section-subtitle">Everything you need to manage CAPTCHA challenges on your own infrastructure</p>
-        <div class="features-grid">
+        <div class="feature-groups">
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
-            </div>
-            <h3>ALTCHA Compatible</h3>
-            <p>Works with the official ALTCHA widget. Same protocol, same integration, drop-in replacement for ALTCHA Sentinel.</p>
+          <div class="feature-group">
+            <h3>Drop-in ALTCHA server</h3>
+            <dl>
+              <div>
+                <dt>ALTCHA-compatible</dt>
+                <dd>Works with the official ALTCHA widget: same protocol, same integration. A drop-in replacement for ALTCHA Sentinel.</dd>
+              </div>
+              <div>
+                <dt>Per-site API keys</dt>
+                <dd>Custom difficulty, TTL and domain restrictions, including <code>*.example.com</code> wildcards.</dd>
+              </div>
+              <div>
+                <dt>Replay protection</dt>
+                <dd>Consumed challenges are tracked and rejected on reuse.</dd>
+              </div>
+              <div>
+                <dt>Statistics</dt>
+                <dd>Challenges issued, verified and failed, per key and per day.</dd>
+              </div>
+            </dl>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-              </svg>
-            </div>
-            <h3>API Key Management</h3>
-            <p>Create per-site API keys with custom difficulty, TTL settings, and domain restrictions for granular control.</p>
+          <div class="feature-group">
+            <h3>Abuse controls</h3>
+            <dl>
+              <div>
+                <dt>Per-key rate limiting</dt>
+                <dd>Caps challenge and verify calls for each key, on top of the global per-IP limiter.</dd>
+              </div>
+              <div>
+                <dt>Adaptive difficulty</dt>
+                <dd>Raises the proof-of-work cost for sources requesting at an abusive rate. Your configured difficulty stays the floor; it never blocks.</dd>
+              </div>
+              <div>
+                <dt>Human Interaction Signature</dt>
+                <dd>Scores how a form was filled from aggregate signals only. Monitor mode by default; enforcement is opt-in per key.</dd>
+              </div>
+            </dl>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0110 0v4"/>
-              </svg>
-            </div>
-            <h3>Replay Protection</h3>
-            <p>Consumed challenges are tracked and rejected on reuse. Prevents replay attacks automatically.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="18" y1="20" x2="18" y2="10"/>
-                <line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6" y1="20" x2="6" y2="14"/>
-              </svg>
-            </div>
-            <h3>Statistics Dashboard</h3>
-            <p>Track challenges issued, verifications, and failures per key and per day with built-in Chart.js visualizations.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-              </svg>
-            </div>
-            <h3>Single Binary</h3>
-            <p>Vue.js dashboard embedded in a ~3 MB Go binary via go:embed. One file to deploy, nothing else to manage.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 12H2"/>
-                <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
-                <line x1="6" y1="16" x2="6.01" y2="16"/>
-                <line x1="10" y1="16" x2="10.01" y2="16"/>
-              </svg>
-            </div>
-            <h3>Docker Ready</h3>
-            <p>~15 MB image, SQLite embedded, zero external dependencies. One container is all you need.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3>Security First</h3>
-            <p>Secret rotation, CORS configuration, non-root container, and automatic cleanup of expired challenges.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-              </svg>
-            </div>
-            <h3>Zero Dependencies</h3>
-            <p>SQLite embedded database. No PostgreSQL, no Redis, no external services. Fully self-contained.</p>
+          <div class="feature-group">
+            <h3>Boring to run</h3>
+            <dl>
+              <div>
+                <dt>Single binary</dt>
+                <dd>~14.2 MB with the Vue.js dashboard embedded. Linux, macOS and Windows, amd64 and arm64.</dd>
+              </div>
+              <div>
+                <dt>One container</dt>
+                <dd>~23.8 MB image running as a non-root user. Nothing else to deploy.</dd>
+              </div>
+              <div>
+                <dt>SQLite or MySQL</dt>
+                <dd>SQLite embedded by default, a <code>-mysql</code> build when you need it. No Redis, no external services.</dd>
+              </div>
+              <div>
+                <dt>Sensible defaults</dt>
+                <dd>Secret rotation, CORS configuration, automatic cleanup of expired challenges. The MCP endpoint for AI clients stays off until you enable it.</dd>
+              </div>
+            </dl>
           </div>
 
         </div>
@@ -257,8 +235,8 @@
         <div class="tabs">
           <div class="tab-list" role="tablist" aria-label="Installation methods">
             <button role="tab" aria-selected="true" aria-controls="panel-compose" id="tab-compose">Docker Compose</button>
-            <button role="tab" aria-selected="false" aria-controls="panel-run" id="tab-run">Docker Run</button>
-            <button role="tab" aria-selected="false" aria-controls="panel-source" id="tab-source">From Source</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-run" id="tab-run" tabindex="-1">Docker Run</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-source" id="tab-source" tabindex="-1">From Source</button>
           </div>
 
           <div class="tab-panel" role="tabpanel" id="panel-compose" aria-labelledby="tab-compose">
@@ -297,7 +275,7 @@ volumes:
           <div class="tab-panel" role="tabpanel" id="panel-source" aria-labelledby="tab-source" hidden>
             <div class="code-block">
               <button class="copy-btn" aria-label="Copy code">Copy</button>
-              <pre><code># Requires Go 1.25+ and Node.js 20+
+              <pre><code># Requires Go 1.26+ and Node.js 20+
 git clone https://github.com/Upellift99/GateCHA.git
 cd GateCHA
 make build
@@ -418,19 +396,19 @@ make build
               <tr>
                 <td>ALTCHA Protocol</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
               <tr>
                 <td>Widget Compatible</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
               <tr>
@@ -446,46 +424,46 @@ make build
               <tr>
                 <td>Open Source</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-cross" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="No"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <svg class="icon-cross" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="No"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </td>
               </tr>
               <tr>
                 <td>WordPress Plugin</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
               <tr>
                 <td>Multi-site Keys</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
               <tr>
                 <td>Replay Protection</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
               <tr>
                 <td>Statistics</td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
                 <td>
-                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
+                  <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Yes"><polyline points="20 6 9 17 4 12"/></svg>
                 </td>
               </tr>
             </tbody>
@@ -537,7 +515,7 @@ make build
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </summary>
             <div class="faq-answer">
-              <p>Docker (any platform) or Go 1.25+ and Node.js 20+ to build from source. GateCHA uses SQLite internally, so there are no database servers to set up. The Docker image is approximately 15 MB.</p>
+              <p>Docker (any platform) or Go 1.26+ and Node.js 20+ to build from source. GateCHA uses SQLite internally, so there are no database servers to set up. The Docker image is approximately 23.8 MB.</p>
             </div>
           </details>
 
@@ -587,7 +565,7 @@ make build
           <p>Self-hosted ALTCHA CAPTCHA management server. Open source, privacy-first, fully self-contained.</p>
         </div>
         <div class="footer-links">
-          <h4>Links</h4>
+          <h2>Links</h2>
           <ul>
             <li><a href="/docs/">Documentation</a></li>
             <li><a href="https://github.com/Upellift99/GateCHA" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -596,7 +574,7 @@ make build
           </ul>
         </div>
         <div class="footer-links">
-          <h4>Legal</h4>
+          <h2>Legal</h2>
           <ul>
             <li><a href="https://github.com/Upellift99/GateCHA/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
           </ul>
