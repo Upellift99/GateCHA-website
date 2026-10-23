@@ -156,8 +156,9 @@
 /* --- Method pills for the API reference --- */
 .api-endpoint {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.35rem 0.6rem;
   font-family: var(--font-mono);
   font-size: 0.9rem;
   padding: 0.5rem 0;
@@ -181,6 +182,7 @@
 
 .api-endpoint .api-path {
   color: var(--color-neutral-900);
+  overflow-wrap: anywhere;
 }
 
 .api-endpoint .api-desc {

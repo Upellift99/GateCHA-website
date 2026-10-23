@@ -539,6 +539,7 @@ section {
 
 .code-block pre {
   padding: 1.5rem;
+  padding-right: 6rem; /* keep the first lines clear of the Copy button */
   overflow-x: auto;
   margin: 0;
 }
@@ -980,6 +981,11 @@ tbody td strong {
   .step-connector {
     transform: rotate(90deg);
     padding-top: 0;
+  }
+
+  /* Code: on narrow screens, drop the code below the Copy button instead */
+  .code-block pre {
+    padding: 3.25rem 1.25rem 1.25rem;
   }
 
   /* Tabs */
