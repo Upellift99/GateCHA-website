@@ -218,6 +218,11 @@
     border-left: none;
   }
 
+  .docs-toc a {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
   .docs-hero h1 {
     font-size: 2rem;
   }
