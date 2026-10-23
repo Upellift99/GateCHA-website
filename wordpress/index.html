@@ -98,71 +98,52 @@
       <div class="container">
         <h2 class="section-title">Why the GateCHA Plugin?</h2>
         <p class="section-subtitle">Privacy-first CAPTCHA protection that respects your users and your data</p>
-        <div class="features-grid">
+        <div class="feature-groups">
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
-            </div>
-            <h3>Privacy-First</h3>
-            <p>No cookies, no fingerprinting, no user tracking, and no data sent to third parties. Fully GDPR-compliant out of the box.</p>
+          <div class="feature-group">
+            <h3>For your visitors</h3>
+            <dl>
+              <div>
+                <dt>Privacy-first</dt>
+                <dd>No cookies, no fingerprinting, no user tracking, and no data sent to third parties. Fully GDPR-compliant out of the box.</dd>
+              </div>
+              <div>
+                <dt>Invisible proof-of-work</dt>
+                <dd>Bots solve a computational puzzle in the background. No image puzzles, no friction for legitimate visitors.</dd>
+              </div>
+            </dl>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-            </div>
-            <h3>Invisible Proof-of-Work</h3>
-            <p>Bots solve a computational puzzle in the background. No image puzzles, no friction for legitimate visitors.</p>
+          <div class="feature-group">
+            <h3>Verification</h3>
+            <dl>
+              <div>
+                <dt>Server-side verification</dt>
+                <dd>Every submission is verified by your GateCHA server, with central stats and built-in replay protection.</dd>
+              </div>
+              <div>
+                <dt>Fail-open / fail-closed</dt>
+                <dd>Choose what happens if your GateCHA server is unreachable: block submissions for safety, or allow them to avoid lockouts.</dd>
+              </div>
+              <div>
+                <dt>Interaction signals</dt>
+                <dd>Optional second opinion on each submission, scored from counts and durations alone. Off by default.</dd>
+              </div>
+            </dl>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0110 0v4"/>
-              </svg>
-            </div>
-            <h3>Server-Side Verification</h3>
-            <p>Every submission is verified by your GateCHA server, with central stats and built-in replay protection.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
-                <line x1="4" y1="22" x2="4" y2="15"/>
-              </svg>
-            </div>
-            <h3>Bundled Widget</h3>
-            <p>The ALTCHA Web Component ships with the plugin. No external CDN dependency and nothing to load from a third party.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3>Fail-Open / Fail-Closed</h3>
-            <p>Choose what happens if your GateCHA server is unreachable: block submissions for safety, or allow them to avoid lockouts.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </div>
-            <h3>Shortcode for Any Form</h3>
-            <p>Drop the <code>[gatecha]</code> shortcode anywhere to protect custom forms, then verify the <code>altcha</code> field server-side.</p>
+          <div class="feature-group">
+            <h3>Integration</h3>
+            <dl>
+              <div>
+                <dt>Bundled widget</dt>
+                <dd>The ALTCHA Web Component ships with the plugin. No external CDN dependency and nothing to load from a third party.</dd>
+              </div>
+              <div>
+                <dt>Shortcode for any form</dt>
+                <dd>Drop the <code>[gatecha]</code> shortcode anywhere to protect custom forms, then verify the <code>altcha</code> field server-side.</dd>
+              </div>
+            </dl>
           </div>
 
         </div>
