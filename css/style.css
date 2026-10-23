@@ -302,6 +302,9 @@ section {
 .nav-github {
   display: flex;
   align-items: center;
+  /* 20px icon, 44px hit area; the negative margin keeps the layout unchanged */
+  padding: 12px;
+  margin: -12px;
 }
 
 .nav-github svg {
@@ -972,6 +975,7 @@ tbody td strong {
 
   .nav-links a.nav-github {
     padding: 0.75rem 0;
+    margin: 0;
   }
 
   .nav-links .btn-sm {
