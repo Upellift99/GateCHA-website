@@ -13,12 +13,16 @@
 
 /* --- Custom Properties --- */
 :root {
-  --color-primary: #0D9488;
-  --color-primary-dark: #0F766E;
+  /* Primary and muted text hold WCAG AA (4.5:1) on white and the light
+     section greys; on dark surfaces, use --color-primary-on-dark. */
+  --color-primary: #0F766E;
+  --color-primary-dark: #115E59;
   --color-primary-light: #CCFBF1;
+  --color-primary-on-dark: #5EEAD4;
   --color-neutral-900: #0F172A;
   --color-neutral-700: #334155;
-  --color-neutral-400: #94A3B8;
+  --color-text-muted: #475569;
+  --color-neutral-400: #94A3B8; /* decoration, or text on dark surfaces only */
   --color-neutral-200: #E2E8F0;
   --color-neutral-100: #F1F5F9;
   --color-neutral-50: #F8FAFC;
@@ -316,7 +320,7 @@ section {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -362,7 +366,7 @@ section {
   margin-left: 0.75rem;
   padding: 0.15rem 0.75rem;
   font-size: 0.8rem;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   background: var(--color-white);
   border-radius: 6px;
   border: 1px solid var(--color-neutral-200);
@@ -509,7 +513,7 @@ section {
   font-size: 0.95rem;
   font-weight: 500;
   font-family: var(--font-sans);
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   cursor: pointer;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
@@ -646,7 +650,7 @@ section {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -744,7 +748,7 @@ tbody td strong {
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.85rem;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   font-style: italic;
 }
 
@@ -790,7 +794,7 @@ tbody td strong {
 .faq-chevron {
   flex-shrink: 0;
   transition: transform 0.3s;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
 }
 
 .faq-item[open] .faq-chevron {
@@ -810,6 +814,7 @@ tbody td strong {
 
 /* --- Footer --- */
 .footer {
+  --color-primary: var(--color-primary-on-dark);
   background: var(--color-code-bg);
   color: var(--color-neutral-400);
   padding: 4rem 0 2rem;

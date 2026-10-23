@@ -41,7 +41,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   margin-bottom: 0.75rem;
 }
 
@@ -174,9 +174,9 @@
   text-align: center;
 }
 
-.api-method.get { background: #0d9488; }
+.api-method.get { background: var(--color-primary); }
 .api-method.post { background: #2563eb; }
-.api-method.put { background: #d97706; }
+.api-method.put { background: #b45309; }
 .api-method.delete { background: #dc2626; }
 
 .api-endpoint .api-path {
@@ -184,7 +184,7 @@
 }
 
 .api-endpoint .api-desc {
-  color: var(--color-neutral-400);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: 0.85rem;
 }
