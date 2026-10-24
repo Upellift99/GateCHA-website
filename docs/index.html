@@ -79,7 +79,7 @@
 
         <section id="introduction">
           <h2>Introduction</h2>
-          <p>GateCHA is a self-hosted, open-source (MIT) alternative to ALTCHA Sentinel. It wraps the <a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA</a> proof-of-work CAPTCHA protocol with API-key management, multi-site support, replay protection, adaptive difficulty, per-key rate limiting, a privacy-first statistics dashboard, and a DIY Human Interaction Signature — all in a single Docker container.</p>
+          <p>GateCHA is a free, self-hosted, open-source (MIT) alternative to ALTCHA Sentinel, ALTCHA's commercial self-hosted server. It wraps the <a href="https://altcha.org" target="_blank" rel="noopener noreferrer">ALTCHA</a> proof-of-work CAPTCHA protocol with API-key management, multi-site support, replay protection, adaptive difficulty, per-key rate limiting, a privacy-first statistics dashboard, and a DIY Human Interaction Signature — all in a single Docker container.</p>
           <ul class="bullets">
             <li><strong>ALTCHA-compatible</strong> — works with the official ALTCHA widget; no proprietary client.</li>
             <li><strong>Self-contained</strong> — one container, embedded SQLite (or MySQL), no external services.</li>
@@ -241,7 +241,7 @@ if resp.json().get('ok'):
           <p>When enabled, GateCHA raises the PoW cost <em>above</em> the key's base for any source (by IP) requesting challenges at an abusive rate — escalating an attacker without penalizing normal visitors. The configured difficulty stays the floor; it never blocks.</p>
 
           <h3>Human Interaction Signature (HIS)</h3>
-          <p>An open-source take on the concept behind ALTCHA Sentinel's proprietary HIS. The client collects <strong>privacy-preserving aggregates</strong> of interaction behaviour (counts, pointer distance, durations, timing variance — never coordinates, timestamps or key contents) and the server scores the automation probability.</p>
+          <p>An open-source take on the Human Interaction Signature concept found in ALTCHA Sentinel. The client collects <strong>privacy-preserving aggregates</strong> of interaction behaviour (counts, pointer distance, durations, timing variance — never coordinates, timestamps or key contents) and the server scores the automation probability.</p>
           <ul class="bullets">
             <li><strong>Monitor mode</strong> (default) records and counts bot-suspected samples but <em>never</em> blocks.</li>
             <li><strong>Sampling</strong> (opt-in per key) stores the raw aggregates so you can calibrate a threshold on real traffic, with a configurable retention window. The dashboard shows the score distribution against the suspect threshold.</li>
