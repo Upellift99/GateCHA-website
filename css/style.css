@@ -1103,3 +1103,10 @@ tbody td strong {
     justify-content: center;
   }
 }
+
+/* --- Pointer to the hosted offer: one quiet line, never a banner --- */
+.cloud-note {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
