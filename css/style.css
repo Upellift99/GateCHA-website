@@ -253,7 +253,7 @@ section {
   align-items: center;
 }
 
-/* The mark: a "G" whose bar turns into a check (same drawing as the favicon). */
+/* The mark: a shield with a check, white on teal (same drawing as the favicon). */
 .logo-mark {
   flex-shrink: 0;
   margin-right: 0.5rem;
