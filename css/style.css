@@ -250,6 +250,13 @@ section {
   letter-spacing: -0.02em;
   text-decoration: none;
   display: flex;
+  align-items: center;
+}
+
+/* The mark: a shield with a check, white on teal (same drawing as the favicon). */
+.logo-mark {
+  flex-shrink: 0;
+  margin-right: 0.5rem;
 }
 
 .logo-gate {
